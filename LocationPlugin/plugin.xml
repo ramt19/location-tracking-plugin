@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-locationplugin" version="0.0.1">
+    <name>LocationPlugin</name>
+
+    <description>An Android Cordova plugin that allows users to display simple Toast messages at the bottom of the screen.</description>
+    <license>MIT</license>
+
+    <keywords>cordova,android,toast,message,alert</keywords>
+    <repo>https://github.com/stanidesis/toastyplugin/Toast-PhoneGap-Plugin.git</repo>
+    <issue>https://github.com/stanidesis/toastyplugin/issues</issue>
+  
+    <engines>
+        <engine name="cordova" version=">=3.0.0"/>
+    </engines>
+  
+    <js-module src="www/locationplugin.js" name="locationPlugin">
+        <clobbers target="window.plugins.locationPlugin" />
+    </js-module>
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="LocationPlugin">
+                <param name="android-package" value="com.ram.cordova.plugin.LocationPlugin"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/LocationPlugin.java" target-dir="src/com/ram/cordova/plugin" />
+		<source-file src="src/android/UpdaterService.java" target-dir="src/com/ram/cordova/plugin" />
+		<source-file src="src/android/LocationDatabase.java" target-dir="src/com/ram/cordova/plugin" />
+		<source-file src="src/android/StartOnBoot.java" target-dir="src/com/ram/cordova/plugin" />
+		
+    </platform>
+</plugin>
