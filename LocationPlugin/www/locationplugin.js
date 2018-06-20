@@ -1,19 +1,15 @@
-
-
-  // Empty constructor
+ // Empty constructor
   function LocationPlugin() {}
-  
   // The function that passes work along to native shells
-  
-  LocationPlugin.prototype.startSer = function(autKey, url, contentType, timer, debug, startOnBoot, successCallback, errorCallback) {
-    var options = {};
-    options.key = autKey;
-    options.url = url;
-    options.contentType = contentType;
-    options.timer = timer;
-    options.debug = debug;
-	options.startOnBoot = startOnBoot;
-    console.log(debug);
+  LocationPlugin.prototype.startSer = function(options, successCallback, errorCallback) {
+  //   var option = {};
+  //   options.key = autKey;
+  //   options.url = url;
+  //   options.contentType = contentType;
+  //   options.timer = timer;
+  //   options.debug = debug;
+	// options.startOnBoot = startOnBoot;
+    
     cordova.exec(successCallback, errorCallback, 'LocationPlugin', 'start', [options]);
   }
   

@@ -1,4 +1,4 @@
-package com.ram.cordova.plugin;
+package com.org.cordova.plugin;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -9,10 +9,8 @@ import android.util.Log;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import java.util.Calendar;
-/**
- * Created by Himanshu on 16-06-2018.
- */
 
+// Receiver to Restart Service on Boot
 public class StartOnBoot extends BroadcastReceiver {
 	
 	private boolean startOnBoot;
@@ -21,11 +19,9 @@ public class StartOnBoot extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
             startOnBoot = prefs.getBoolean("startOnBoot",true);
 			timer = prefs.getInt("timer",1000*60*30);
 			
-
             if(startOnBoot) {
                 Intent service = new Intent(context, UpdaterService.class);
 				Calendar cal = Calendar.getInstance();

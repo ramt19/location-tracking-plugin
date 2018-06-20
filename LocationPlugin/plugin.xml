@@ -4,12 +4,12 @@
         id="cordova-plugin-locationplugin" version="0.0.1">
     <name>LocationPlugin</name>
 
-    <description>An Android Cordova plugin that allows users to display simple Toast messages at the bottom of the screen.</description>
+    <description>Location Tracking Plugin</description>
     <license>MIT</license>
 
-    <keywords>cordova,android,toast,message,alert</keywords>
-    <repo>https://github.com/stanidesis/toastyplugin/Toast-PhoneGap-Plugin.git</repo>
-    <issue>https://github.com/stanidesis/toastyplugin/issues</issue>
+    <keywords>cordova,location</keywords>
+    <repo>https://github.com/ramt19/location-tracking-plugin.git</repo>
+    <issue>https://github.com/ramt19/LocationPlugin/issues</issue>
   
     <engines>
         <engine name="cordova" version=">=3.0.0"/>
@@ -19,16 +19,37 @@
         <clobbers target="window.plugins.locationPlugin" />
     </js-module>
     <platform name="android">
+		
+		<framework src="com.android.support:appcompat-v7:26.+" />
+		
+		<config-file target="AndroidManifest.xml" parent="/*">
+			<uses-permission android:name="android.permission.INTERNET" />
+			<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+			<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+			<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+		</config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<service android:enabled="true" android:name="com.org.cordova.plugin.UpdaterService" />
+			<receiver android:exported="true" android:name=".StartOnBoot" android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+			</receiver>
+		</config-file>
+		
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="LocationPlugin">
-                <param name="android-package" value="com.ram.cordova.plugin.LocationPlugin"/>
+                <param name="android-package" value="com.org.cordova.plugin.LocationPlugin"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/LocationPlugin.java" target-dir="src/com/ram/cordova/plugin" />
-		<source-file src="src/android/UpdaterService.java" target-dir="src/com/ram/cordova/plugin" />
-		<source-file src="src/android/LocationDatabase.java" target-dir="src/com/ram/cordova/plugin" />
-		<source-file src="src/android/StartOnBoot.java" target-dir="src/com/ram/cordova/plugin" />
+        <source-file src="src/android/LocationPlugin.java" target-dir="src/com/org/cordova/plugin" />
+		<source-file src="src/android/UpdaterService.java" target-dir="src/com/org/cordova/plugin" />
+		<source-file src="src/android/LocationDatabase.java" target-dir="src/com/org/cordova/plugin" />
+		<source-file src="src/android/StartOnBoot.java" target-dir="src/com/org/cordova/plugin" />
 		
     </platform>
 </plugin>
